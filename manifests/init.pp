@@ -2,7 +2,7 @@
 # basically it just decodes the CA and links the hash to /etc/pki/cert.pem
 # foreman 1.6 -> 1.7.4 users using missing ldap certificate authority certificate
 
-class theforemanorgpr132patch {
+class theforeman_174_ad_ldap_patch {
   # [param]: $your_ca = your exported CA certificate using BASE-64 format for your ldap provider in swizzley88-theforemanpr132patch 
   $your_ca = ['some_org.cer']
   $cert_source = "puppet:///theforemanpr132patch/${your_ca}"

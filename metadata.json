@@ -1,12 +1,12 @@
 {
-  "name": "swizzley/theforemanorgpr132patch",
+  "name": "swizzley/theforeman_174_ad_ldap_patch",
   "version": "0.1.0",
   "author": "Dustin Morgan",
   "summary": "Puppet module for trusting your domains LDAP after theforeman 1.7.4 update on RHEL variants",
   "license": "Apache-2.0",
-  "source": "git@github.com:swizzley/theforeman-gh-pages.pr132.Puppet-patch.theforeman_org.p.0.1.0.git",
-  "project_page": "https://github.com/swizzley/theforeman-gh-pages.pr132.Puppet-patch.theforeman_org.p.0.1.0",
-  "issues_url": "https://github.com/swizzley/theforeman-gh-pages.pr132.Puppet-patch.theforeman_org.p.0.1.0/issues",
+  "source": "https://github.com/swizzley/puppet-theforeman.1.7.4.ad_ldap.patch.git",
+  "project_page": "https://github.com/swizzley/puppet-theforeman.1.7.4.ad_ldap.patch",
+  "issues_url": "https://github.com/swizzley/puppet-theforeman.1.7.4.ad_ldap.patch/issues",
   "tags": [
     "unattended",
     "update",
