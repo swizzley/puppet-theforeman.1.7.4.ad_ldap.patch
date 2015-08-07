@@ -1,4 +1,4 @@
-#theforeman_174_ad_ldap_patch
+#theforeman_182_ad_ldap_patch
 
 ####Table of Contents
 
@@ -6,7 +6,7 @@
 2. [Requirements - your certificate](#requirements)
 
 ##Overview
-Puppet-module patch for theforeman 1.7.4 LDAP Authority SSL certificate trust error from a missing or untrusted LDAP certificate authority exported from 
+Puppet-module patch for theforeman 1.8.2 LDAP Authority SSL certificate trust error from a missing or untrusted LDAP certificate authority exported from 
 Active Directory Certificate Services exported as Base-64 format from Enterprise PKI in the certificate export wizard.
 See. theformanorg PR#362 https://github.com/theforeman/theforeman.org/pull/362
 
