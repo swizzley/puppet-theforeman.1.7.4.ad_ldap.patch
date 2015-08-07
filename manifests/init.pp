@@ -1,12 +1,11 @@
-# this module is to make AD LDAP work with ver. 1.7.4 upgrades from > ver 1.6
+# this module is to make AD LDAP work with ver. 1.8.2 
 # basically it just decodes the CA and links the hash to /etc/pki/cert.pem
-# foreman 1.6 -> 1.7.4 users using missing ldap certificate authority certificate
 
-class theforeman_174_ad_ldap_patch {
+class theforeman_182_ad_ldap_patch {
   # [param]: $your_ca = your exported CA certificate using BASE-64 format for your ldap provider in swizzley88-theforemanpr132patch 
   $your_ca = ['some_org.cer']
   $cert_source = "puppet:///theforemanpr132patch/${your_ca}"
-  $patch = "ln -s $(openssl x509 -noout -hash -in /etc/pki/tls/certs/${your_ca}).0 /etc/pki/tls/certs/certs.pem"
+  $patch = "ln -s /etc/pki/tls/certs/${your_ca} $(openssl x509 -noout -hash -in /etc/pki/tls/certs/${your_ca}).0 "
 
   file { "/pki/tls/certs/${your_ca}":
     ensure  => 'present',
@@ -14,15 +13,15 @@ class theforeman_174_ad_ldap_patch {
     owner   => 'root',
     mode    => '0644',
   } ->
-  exec { "patch_theforeman_1.7.4_ad_ldap_provider":
+  exec { "patch_theforeman_1.8.2_ad_ldap_provider":
     shell   => 'bash',
     path    => '/bin:/usr/bin:/pki/tls:/etc/pki/tls/certs',
-    command => "unlink /etc/pki/tls/certs/certs.pem && ${patch}",
-    unless  => "test -L /etc/pki/tls/certs/${your_ca}",
+    command => "unlink /etc/pki/tls/certs/ca-bundle.crt && ${patch}",
+    unless  => "test -L /etc/pki/tls/certs/${your_ca}.0",
   } ->
-  file { ["/etc/pki/tls/certs/${your_ca}.0", "/etc/pki/tls/cert.pem"]:
-    ensure => 'present',
-    target => 'link',
+  file { '/etc/pki/tls/certs/ca-bundle.crt':
+    ensure => 'link',
+    target => "/etc/pki/tls/certs/${your_ca}.0",
   }
 
 }
