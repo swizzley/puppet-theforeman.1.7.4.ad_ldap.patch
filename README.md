@@ -2,7 +2,7 @@
 
 ####Table of Contents
 
-1. [Overview - What is the theforeman_174_ad_ldap_patch module?](#overview)
+1. [Overview - What is the theforeman_182_ad_ldap_patch module?](#overview)
 2. [Requirements - your certificate](#requirements)
 
 ##Overview
