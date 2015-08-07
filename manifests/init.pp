@@ -26,5 +26,11 @@ class theforeman_182_ad_ldap_patch {
     command  => "ln -s /etc/pki/tls/certs/$(openssl x509 -noout -hash -in /etc/pki/tls/certs/${your_ca}).0 /etc/pki/tls/certs/ca-bundle.crt",
     unless   => 'test -L /etc/pki/tls/certs/ca-bundle.crt',
   }
+  package { 'foreman-installer': ensure => installed, }
 
+  service { ['foreman-proxy', 'postgresql', 'httpd',]:
+    ensure  => running,
+    enable  => true,
+    require => Package['foreman-installer']
+  }
 }
