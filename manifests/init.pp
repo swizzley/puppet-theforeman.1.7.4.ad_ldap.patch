@@ -3,13 +3,13 @@
 
 class theforeman_182_ad_ldap_patch {
   # [param]: $your_ca = your exported CA certificate using BASE-64 format for your ldap provider in swizzley88-theforemanpr132patch 
-  $your_ca = 'RootCA.cer'
-  $cert_source = "puppet:///modules/theforeman_183_ad_ldap_patch/${your_ca}"
+   $your_ca = 'RootCA.cer'
+  $cert_source = "puppet:///modules/foreman/${your_ca}"
   $patch = "ln -s /etc/pki/tls/certs/${your_ca} /etc/pki/tls/certs/$(openssl x509 -noout -hash -in /etc/pki/tls/certs/${your_ca}).0 "
 
-  file { "/pki/tls/certs/${your_ca}":
+  file { "/etc/pki/tls/certs/${your_ca}":
     ensure  => 'present',
-    content => $cert_source,
+    source  => $cert_source,
     owner   => 'root',
     mode    => '0644',
     require => Package['foreman-installer'],
